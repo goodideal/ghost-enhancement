@@ -1,12 +1,24 @@
-sudo: false
-language: node_js
-node_js:
-  - '10'
+sudo: required
+
+services:
+  - docker
+
 before_install:
-  - npm i npminstall -g
-install:
-  - npminstall
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo apt-get update
+  - sudo apt-get -y install docker-ce
+  - sudo service docker restart
+
 script:
-  - npm run ci
-after_script:
-  - npminstall codecov && codecov
+  - docker build -t goodideal/ghost-enhancement:$TRAVIS_BUILD_NUMBER .
+
+after_success:
+  - if [ -z "$DOCKER_USER" ]; then
+      echo "PR build, skipping Docker Hub push";
+    else
+    docker login -u "$DOCKER_USER" -p "$DOCKER_PASS";
+    docker tag goodideal/ghost-enhancement:$TRAVIS_BUILD_NUMBER goodideal/ghost-enhancement:latest;
+    docker push goodideal/ghost-enhancement:$TRAVIS_BUILD_NUMBER;
+    docker push goodideal/ghost-enhancement:latest;
+    fi
