@@ -24,7 +24,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-ghost-enh",
+    "start": "egg-scripts start --title=egg-server-ghost-enh",
     "stop": "egg-scripts stop --title=egg-server-ghost-enh",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
