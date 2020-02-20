@@ -23,6 +23,8 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
+  config.contextPath = process.env.CONTEXT_PATH || "enhance"
+
   config.lowdb = {
     path: process.env.DB_PATH || "/tmp/db.json"
   };
