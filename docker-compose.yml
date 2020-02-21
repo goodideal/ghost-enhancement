@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  ghost:
+    image: ghost:3-alpine
+    depends_on: 
+      - db
+    restart: always
+    environment:
+      url: http://localhost:2368
+      database__client: mysql
+      database__connection__host: db
+      database__connection__port: 3306
+      database__connection__user: root
+      database__connection__password: ghost
+      database__connection__database: ghost
+    ports:
+      - 2368:2368
+  db:
+    image: mariadb:10
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ghost
+      MYSQL_DATABASE: ghost
+    volumes:
+      - ./ghost_db/:/var/lib/mysql
+    ports:
+      - 3306:3306

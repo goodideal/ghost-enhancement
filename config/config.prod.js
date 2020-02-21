@@ -23,26 +23,27 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
+  config.contextPath = process.env.CONTEXT_PATH || "/enhance";
+  const {
+    MYSQL_URL,
+    MYSQL_PORT,
+    MYSQL_DATABASE,
+    MYSQL_USER,
+    MYSQL_PASSWORD
+  } = process.env;
+  
   config.mysql = {
     client: {
-      host: "localhost",
-      port: "3306",
-      user: "root",
-      password: "ghost",
-      database: "ghost"
+      host: MYSQL_URL || "rm-uf6vpht728q06k71d.mysql.rds.aliyuncs.com",
+      port: MYSQL_PORT || "3306",
+      user: MYSQL_USER || "blog",
+      password: MYSQL_PASSWORD || "password",
+      database: MYSQL_DATABASE || "blog"
     },
     // 是否加载到 app 上，默认开启
     app: true,
     // 是否加载到 agent 上，默认关闭
     agent: false
-  };
-
-  config.contextPath = process.env.CONTEXT_PATH || "/enhance"
-
-  config.security = {
-    csrf: {
-      enable: false
-    }
   };
 
   return {

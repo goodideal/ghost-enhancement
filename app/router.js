@@ -6,8 +6,8 @@
 module.exports = app => {
   const { router, controller, config } = app;
   const { contextPath } = config;
-  router.get("/", controller.home.index);
+  router.get(`${contextPath}/`, controller.home.index);
 
-  router.get(`${contextPath}/post/counts/:slug`, controller.post.getCount);
-  router.post(`${contextPath}/post/counts/:slug`, controller.post.increaseCount);
+  router.get(`${contextPath}/post/views/:slug`, controller.post.getViews);
+  router.post(`${contextPath}/post/views/:slug`, controller.post.increaseViews);
 };

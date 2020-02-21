@@ -1,19 +1,19 @@
-'use strict';
+"use strict";
 
-const Controller = require('egg').Controller;
+const Controller = require("egg").Controller;
 
 class HomeController extends Controller {
-  async getCount() {
+  async getViews() {
     const { ctx } = this;
     const { slug } = ctx.params;
-    ctx.body = ctx.db.get('posts.' + slug).value();
+
+    ctx.body = await ctx.service.post.getViews(slug);
   }
 
-  async increaseCount() {
+  async increaseViews() {
     const { ctx } = this;
     const { slug } = ctx.params;
-    ctx.db.update('posts.' + slug, n => (n ? n : 0) + 1).write();
-    ctx.body = ctx.db.get('posts.' + slug).value();
+    ctx.body = await ctx.service.post.increaseViews(slug);
   }
 }
 

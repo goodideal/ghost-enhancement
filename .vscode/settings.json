@@ -1,3 +1,13 @@
 {
-  "eggHelper.serverPort": 40578
+  "eggHelper.serverPort": 40578,
+  "sqltools.connections": [
+    {
+      "database": "./ghost.db",
+      "dialect": "SQLite",
+      "isActive": true,
+      "isConnected": true,
+      "name": "ghost"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
 }
