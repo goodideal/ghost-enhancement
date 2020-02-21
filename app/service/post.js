@@ -5,7 +5,7 @@ class PostService extends Service {
     return await this.app.mysql.query(`
     CREATE TABLE posts_views (
       slug varchar(191) NOT NULL,
-      views bigint(255) unsigned DEFAULT 0,
+      views bigint(255) unsigned DEFAULT 1,
       PRIMARY KEY (slug)
     );
     `);
@@ -34,7 +34,7 @@ class PostService extends Service {
         INSERT INTO posts_views
           ( slug, views )
         VALUES 
-          ( "${slug}", 0 )
+          ( "${slug}", ${Math.round(Math.random() * 10)} )
         ON DUPLICATE KEY UPDATE
           slug = "${slug}",
           views = views + 1
