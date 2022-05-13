@@ -1,4 +1,4 @@
-# ghost-enh
+# ghost-enhancement
 
 - 文章阅读计数
 
