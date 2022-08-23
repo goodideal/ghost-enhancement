@@ -1,9 +1,9 @@
-FROM library/node:lts-alpine
+FROM library/node:slim
 
 COPY . /app
 WORKDIR /app
 
 RUN cd /app && \
-    npm i --production
+    npm i --omit=dev
 
 CMD ["npm", "start"]
