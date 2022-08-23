@@ -3,7 +3,7 @@ FROM library/node:lts-alpine
 COPY . /app
 WORKDIR /app
 
-RUN apk install -U git
+RUN apk -U add git
 
 RUN npm install -g npm@latest && \
     cd /app && \
