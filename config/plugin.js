@@ -9,6 +9,6 @@ module.exports = {
 
   mysql: {
     enable: true,
-    package: "egg-mysql2"
+    package: "egg-mysql"
   }
 };
